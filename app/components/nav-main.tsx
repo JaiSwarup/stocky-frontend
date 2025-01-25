@@ -1,4 +1,3 @@
-"use client";
 import {
   Collapsible,
   CollapsibleContent,
@@ -31,8 +30,8 @@ export function NavMain({
   return (
     <SidebarGroup>
       <SidebarMenu>
-        {items.map((item) => (
-          <SidebarMenuItem>
+        {items.map((item, index) => (
+          <SidebarMenuItem key={index}>
             <NavLink to={item.url}>
               {({ isActive, isPending }) => (
                 <SidebarMenuButton tooltip={item.title} isActive={isActive}>

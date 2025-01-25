@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import { NavLink, NavLinkProps, useNavigation } from "@remix-run/react";
 
@@ -109,7 +107,6 @@ function MobileLink({
   children,
   ...props
 }: MobileLinkProps) {
-  const navigation = useNavigation();
   return (
     <NavLink
       to={to}

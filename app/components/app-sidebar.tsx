@@ -1,18 +1,5 @@
-"use client";
-
 import * as React from "react";
-import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react";
+import { BookOpen, Bot, Settings2, SquareTerminal } from "lucide-react";
 
 import { NavMain } from "~/components/nav-main";
 // import { NavProjects } from "@/components/nav-projects";
@@ -30,23 +17,23 @@ import {
 // This is sample data.
 const data = [
   {
-    title: "Playground",
+    title: "Dashboard",
     url: "/dashboard",
     icon: SquareTerminal,
   },
   {
-    title: "Models",
-    url: "/idk",
+    title: "Portfolio",
+    url: "/portfolio",
     icon: Bot,
   },
   {
-    title: "Documentation",
-    url: "/idk",
+    title: "Trading",
+    url: "/trading",
     icon: BookOpen,
   },
   {
-    title: "Settings",
-    url: "/idk",
+    title: "Wallet",
+    url: "/wallet",
     icon: Settings2,
   },
 ];

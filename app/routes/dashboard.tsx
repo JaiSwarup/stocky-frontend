@@ -2,6 +2,7 @@
 // import Image from "next/image";
 
 import { Button } from "~/components/ui/button";
+import axios from "axios";
 import {
   Card,
   CardContent,
@@ -32,13 +33,22 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "~/components/ui/sidebar";
+import { useLoaderData } from "@remix-run/react";
 
 // export const metadata: Metadata = {
 //   title: "Dashboard",
 //   description: "Example dashboard app built using the components.",
 // };
 
+export const loader = async () => {
+  const response = await axios.get("http://localhost:8080/api/stocks");
+  // console.log(response);
+  return response.data;
+};
+
 export default function DashboardPage() {
+  const response = useLoaderData<typeof loader>();
+  console.log(response);
   return (
     <>
       <SidebarProvider>
