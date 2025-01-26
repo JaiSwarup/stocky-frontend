@@ -33,22 +33,40 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "~/components/ui/sidebar";
-import { useLoaderData } from "@remix-run/react";
+import { redirect, useLoaderData } from "@remix-run/react";
+import { LoaderFunctionArgs } from "@remix-run/node";
 
 // export const metadata: Metadata = {
 //   title: "Dashboard",
 //   description: "Example dashboard app built using the components.",
 // };
 
-export const loader = async () => {
-  const response = await axios.get("http://localhost:8080/api/stocks");
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const cookieHeader = request.headers.get("Cookie");
+  const sessionCookie = cookieHeader
+    ?.split(";")
+    .find((c) => c.trim().startsWith("sessionToken"));
+  if (!sessionCookie) {
+    return redirect("/login");
+  }
+  const token = sessionCookie.split("=")[1];
+  if (!token) {
+    return redirect("/login");
+  }
+  console.log(token);
+  // if (!token) {
+  //   return { isLoggedIn: false };
+  // }
+  // const response = await axios.get("http://localhost:8080/api/stocks");
   // console.log(response);
-  return response.data;
+  return {};
 };
 
 export default function DashboardPage() {
   const response = useLoaderData<typeof loader>();
-  console.log(response);
+  if (!response) {
+    redirect("/login");
+  }
   return (
     <>
       <SidebarProvider>
